@@ -54,17 +54,47 @@ export const ScrollPopAnimation = () => {
         <Navbar />
       </motion.div>
 
-      {/* ─── SECTION 1: JESUS WITH TEXT ─── */}
+      {/* ─── SECTION 1: MOUNTAIN + JESUS ─── */}
       <section className="relative w-full h-screen bg-black flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30" />
-        
+        <div className="absolute inset-0">
+          {/* Background: Mountain (pops in first) */}
+          <motion.div
+            className="absolute inset-0"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, margin: '-100px' }}
+          >
+            <img
+              src={valleyImage}
+              alt="Mountain Valley"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+
+          {/* Foreground: Jesus (stays on top layer) */}
+          <motion.div
+            className="absolute inset-0 flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0.7, y: 100 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            viewport={{ once: true, margin: '-100px' }}
+          >
+            <img
+              src={jesusImage}
+              alt="Jesus overlooking valley"
+              className="h-full object-contain drop-shadow-2xl relative z-10"
+            />
+          </motion.div>
+        </div>
+
         {/* Hero Text */}
         <motion.div
-          className="absolute top-32 left-0 right-0 z-10 pointer-events-none"
-          initial="hidden"
-          whileInView="visible"
+          className="absolute top-32 left-0 right-0 z-20 pointer-events-none"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
           viewport={{ once: true, margin: '-100px' }}
-          variants={textVariants}
         >
           <h1 className="text-5xl md:text-7xl font-bold text-white text-center drop-shadow-2xl px-4 max-w-4xl mx-auto leading-tight">
             On the Mountain...
@@ -72,31 +102,16 @@ export const ScrollPopAnimation = () => {
             <span className="text-obc-lavender">God Reveals.</span>
           </h1>
         </motion.div>
-
-        {/* Jesus Image Pops In */}
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={popInVariants}
-        >
-          <img
-            src={jesusImage}
-            alt="Jesus overlooking valley"
-            className="h-full object-contain drop-shadow-2xl"
-          />
-        </motion.div>
       </section>
 
-      {/* ─── SECTION 2: VALLEY POPS IN ─── */}
+      {/* ─── SECTION 2: VALLEY FULL ─── */}
       <section className="relative w-full h-screen bg-black flex items-center justify-center overflow-hidden">
         <motion.div
           className="absolute inset-0"
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true, margin: '-100px' }}
-          variants={popInVariants}
         >
           <img
             src={valleyImage}
@@ -108,16 +123,10 @@ export const ScrollPopAnimation = () => {
         {/* Overlay text */}
         <motion.div
           className="absolute inset-0 flex items-center justify-center z-10"
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
           viewport={{ once: true, margin: '-100px' }}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: { delay: 0.3, duration: 0.6 },
-            },
-          }}
         >
           <h2 className="text-5xl md:text-7xl font-bold text-white text-center drop-shadow-2xl px-4 max-w-4xl leading-tight">
             In the Valley...
@@ -127,35 +136,50 @@ export const ScrollPopAnimation = () => {
         </motion.div>
       </section>
 
-      {/* ─── SECTION 3: CLOUDS POPS IN ─── */}
+      {/* ─── SECTION 3: MOUNTAIN + JESUS + CLOUDS ─── */}
       <section className="relative w-full h-screen bg-black flex items-center justify-center overflow-hidden">
-        <motion.div
-          className="absolute inset-0"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={popInVariants}
-        >
-          <img
-            src={cloudsImage}
-            alt="Clouds"
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
+        <div className="absolute inset-0">
+          {/* Background: Mountain */}
+          <div className="absolute inset-0">
+            <img
+              src={valleyImage}
+              alt="Mountain Valley"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Mid-layer: Jesus */}
+          <div className="absolute inset-0 flex items-center justify-center z-10">
+            <img
+              src={jesusImage}
+              alt="Jesus overlooking valley"
+              className="h-full object-contain drop-shadow-2xl"
+            />
+          </div>
+
+          {/* Foreground: Clouds (pops in) */}
+          <motion.div
+            className="absolute inset-0 z-20"
+            initial={{ opacity: 0, scale: 0.9, y: 100 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, margin: '-100px' }}
+          >
+            <img
+              src={cloudsImage}
+              alt="Clouds"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+        </div>
 
         {/* Overlay text */}
         <motion.div
-          className="absolute inset-0 flex items-center justify-center z-10"
-          initial="hidden"
-          whileInView="visible"
+          className="absolute inset-0 flex items-center justify-center z-30"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
           viewport={{ once: true, margin: '-100px' }}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: { delay: 0.3, duration: 0.6 },
-            },
-          }}
         >
           <h2 className="text-5xl md:text-7xl font-bold text-white text-center drop-shadow-2xl px-4 max-w-4xl leading-tight">
             What Was Spoken...
