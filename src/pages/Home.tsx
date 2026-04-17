@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Play, ArrowUpRight, MapPin, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { PageHero } from '../components/PageHero';
+import { ScrollRevealAnimation } from '../components/ScrollRevealAnimation';
 import { siteAssets } from '../content/siteAssets';
 import { eventPath, homePreviewEvents } from '../content/events';
 import { socialLinks } from '../content/siteLinks';
@@ -34,34 +34,7 @@ const stagger = {
 export function Home() {
   return (
     <main className="w-full overflow-hidden">
-      <PageHero
-        eyebrow="One church. Three expressions. Chattanooga first."
-        watermark="OLIVET"
-        image={siteAssets.buildingHero}
-        imageAlt="Olivet campus building"
-        imageLabel="Downtown // Olivet Nation // Matthew 25"
-        title={[
-        {
-          text: 'ONE FAMILY'
-        },
-        {
-          text: 'MANY LOCATIONS',
-          accent: true
-        },
-        {
-          text: 'ONE MISSION'
-        }]}
-        description="A place to find help, healing, and hope in Chattanooga and beyond."
-        actions={[
-        {
-          label: 'Plan Your Visit',
-          to: '/visit',
-          variant: 'primary'
-        },
-        {
-          label: 'Watch Online',
-          to: '/watch'
-        }]} />
+      <ScrollRevealAnimation />
 
       <section className="bg-obc-midnight py-4">
         <div className="container mx-auto px-6 md:px-12">
