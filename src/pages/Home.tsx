@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Play, ArrowUpRight, MapPin, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { ScrollRevealAnimation } from '../components/ScrollRevealAnimation';
+import { ScrollPopAnimation } from '../components/ScrollPopAnimation';
 import { siteAssets } from '../content/siteAssets';
 import { eventPath, homePreviewEvents } from '../content/events';
 import { socialLinks } from '../content/siteLinks';
@@ -34,7 +34,7 @@ const stagger = {
 export function Home() {
   return (
     <main className="w-full overflow-hidden">
-      <ScrollRevealAnimation />
+      <ScrollPopAnimation />
 
       <section className="bg-obc-midnight py-4">
         <div className="container mx-auto px-6 md:px-12">
