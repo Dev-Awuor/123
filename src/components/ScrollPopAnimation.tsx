@@ -8,39 +8,6 @@ import cloudsImage from '../assets/obc/animate/clouds.jpg';
 export const ScrollPopAnimation = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Staggered entrance animations
-  const popInVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.7,
-      y: 100,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
-  const textVariants = {
-    hidden: {
-      opacity: 0,
-      y: 50,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
   return (
     <div ref={containerRef} className="w-full">
       {/* ─── NAVBAR SECTION ─── */}
@@ -136,46 +103,30 @@ export const ScrollPopAnimation = () => {
         </motion.div>
       </section>
 
-      {/* ─── SECTION 3: MOUNTAIN + JESUS + CLOUDS ─── */}
+      {/* ─── SECTION 3: CLOUDS ─── */}
       <section className="relative w-full h-screen bg-black flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          {/* Background: Mountain */}
-          <div className="absolute inset-0">
-            <img
-              src={valleyImage}
-              alt="Mountain Valley"
-              className="w-full h-full object-cover"
-            />
-          </div>
+        {/* Clouds Background Layer */}
+        <motion.div
+          className="absolute inset-0"
+          initial={{ opacity: 0, scale: 0.9, y: 100 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <img
+            src={cloudsImage}
+            alt="Clouds"
+            className="w-full h-full object-cover"
+            style={{ backgroundColor: 'transparent' }}
+          />
+        </motion.div>
 
-          {/* Mid-layer: Jesus */}
-          <div className="absolute inset-0 flex items-center justify-center z-10">
-            <img
-              src={jesusImage}
-              alt="Jesus overlooking valley"
-              className="h-full object-contain drop-shadow-2xl"
-            />
-          </div>
-
-          {/* Foreground: Clouds (pops in) */}
-          <motion.div
-            className="absolute inset-0 z-20"
-            initial={{ opacity: 0, scale: 0.9, y: 100 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true, margin: '-100px' }}
-          >
-            <img
-              src={cloudsImage}
-              alt="Clouds"
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
-        </div>
+        {/* Dark overlay for text contrast */}
+        <div className="absolute inset-0 bg-black/20 z-10" />
 
         {/* Overlay text */}
         <motion.div
-          className="absolute inset-0 flex items-center justify-center z-30"
+          className="absolute inset-0 flex items-center justify-center z-20"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.6 }}
